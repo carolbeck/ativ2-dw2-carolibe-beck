@@ -1,0 +1,76 @@
+﻿<%- include('partials/header') %>
+<%- include('partials/navbar') %>
+
+<section class="hero-section text-dark py-5">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <span class="eyebrow">Wella Professionals</span>
+        <h1 class="display-4 fw-bold hero-title">Beleza profissional para salões que inspiram.</h1>
+        <p class="lead hero-subtitle">Controle produtos, clientes e pedidos em um painel com design premium Wella. Sua gestão de salão com estilo, força e brilho.</p>
+        <div class="mt-4">
+          <a href="/produtos" class="btn btn-danger btn-lg me-2">Ver produtos</a>
+          <a href="/clientes" class="btn btn-outline-danger btn-lg">Ver clientes</a>
+        </div>
+      </div>
+      <div class="col-lg-5 text-center mt-4 mt-lg-0">
+        <img src="/imgs/principal.webp" class="img-fluid rounded shadow-lg hero-image mx-auto d-block" alt="Cabelo profissional Wella" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container my-5">
+  <div class="row mt-5 g-4">
+    <div class="col-md-6 col-lg-3">
+      <div class="card card-custom h-100 text-dark">
+        <div class="card-body">
+            <div class="feature-icon bg-danger text-white mb-3">
+              <i class="bi bi-box-seam"></i>
+            </div>
+            <h5 class="card-title">Produtos</h5>
+            <p class="card-text">Explore o catálogo completo de produtos Wella para salões profissionais.</p>
+            <a href="/produtos" class="btn btn-danger btn-sm">Explorar</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="card card-custom h-100 text-dark">
+          <div class="card-body">
+            <div class="feature-icon bg-danger text-white mb-3">
+              <i class="bi bi-people-fill"></i>
+            </div>
+            <h5 class="card-title">Clientes</h5>
+            <p class="card-text">Gerencie salões e clientes com facilidade em uma interface moderna.</p>
+            <a href="/clientes" class="btn btn-danger btn-sm">Ver Clientes</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="card card-custom h-100 text-dark">
+          <div class="card-body">
+            <div class="feature-icon bg-danger text-white mb-3">
+              <i class="bi bi-bag-check-fill"></i>
+            </div>
+            <h5 class="card-title">Pedidos</h5>
+            <p class="card-text">Acompanhe pedidos, status e histórico de venda.</p>
+            <a href="/pedidos" class="btn btn-danger btn-sm">Ver Pedidos</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="card card-custom h-100 text-dark">
+          <div class="card-body">
+            <div class="feature-icon bg-danger text-white mb-3">
+              <i class="bi bi-person-badge"></i>
+            </div>
+            <h5 class="card-title">Perfil</h5>
+            <p class="card-text">Acesse seu perfil como especialista e personalize sua experiência.</p>
+            <a href="/perfil" class="btn btn-danger btn-sm">Meu Perfil</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<%- include('partials/footer') %>

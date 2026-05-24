@@ -1,0 +1,71 @@
+<%- include('partials/header') %>
+<%- include('partials/navbar') %>
+
+<section class="container mt-5">
+  <div class="d-flex flex-column flex-md-row align-items-start gap-4">
+    <div class="col-md-4 p-0">
+      <div class="card seller-panel shadow-sm h-100">
+        <div class="card-body">
+          <span class="eyebrow">Equipe</span>
+          <h2 class="h4 mb-3">Vendedores do salão</h2>
+          <p class="text-muted">Conheça a equipe que atende clientes com estilo profissional e cuidado exclusivo.</p>
+          <div class="list-group list-group-flush mt-4">
+            <% vendedores.forEach(function(vendedor) { %>
+              <div class="list-group-item seller-card mb-3 rounded-4 shadow-sm p-3 border-0">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                  <h5 class="mb-0"><%= vendedor.nome %></h5>
+                  <span class="badge rounded-pill bg-danger text-white">Vendedor</span>
+                </div>
+                <p class="mb-1 text-muted"><strong>Especialidade:</strong> <%= vendedor.especialidade %></p>
+                <p class="mb-0 text-muted"><strong>Contato:</strong> <%= vendedor.telefone %></p>
+              </div>
+            <% }) %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-8 p-0">
+      <div class="d-flex align-items-center justify-content-between mb-3">
+        <div>
+          <h1 class="h3 mb-1">Clientes cadastrados</h1>
+          <p class="text-muted mb-0">Registros práticos e mais próximos do estilo de um salão.</p>
+        </div>
+        <a href="/perfil" class="btn btn-danger">Adicionar cliente</a>
+      </div>
+
+      <div class="row g-3">
+        <% if (clientes.length === 0) { %>
+          <div class="col-12">
+            <div class="card client-empty shadow-sm border-0 p-4 text-center">
+              <h5 class="mb-3">Nenhum cliente cadastrado ainda</h5>
+              <p class="text-muted mb-3">Use o mini cadastro em Perfil para adicionar clientes e vê-los aqui com visual mais elegante.</p>
+              <a href="/perfil" class="btn btn-danger">Cadastrar agora</a>
+            </div>
+          </div>
+        <% } else { %>
+          <% clientes.forEach(function(cliente) { %>
+            <div class="col-12 col-md-6">
+              <div class="card client-card h-100 shadow-sm border-0">
+                <div class="card-body">
+                  <div class="d-flex align-items-start justify-content-between mb-3">
+                    <div>
+                      <h5 class="card-title mb-1"><%= cliente.nome %></h5>
+                      <p class="text-muted mb-0"><strong>CPF:</strong> <%= cliente.cpf %></p>
+                    </div>
+                    <span class="badge rounded-pill bg-danger">Cliente</span>
+                  </div>
+                  <p class="mb-2"><strong>Endereço:</strong> <%= cliente.endereco %></p>
+                  <p class="mb-2"><strong>Email:</strong> <%= cliente.email ? cliente.email : 'Não informado' %></p>
+                  <p class="text-muted small mb-0">Registrado recentemente no painel de atendimento.</p>
+                </div>
+              </div>
+            </div>
+          <% }) %>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

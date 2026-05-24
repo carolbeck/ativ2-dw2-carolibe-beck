@@ -1,0 +1,80 @@
+<%- include('partials/header') %>
+<%- include('partials/navbar') %>
+
+<div class="container mt-5">
+    <h2>Catálogo Wella Professionals</h2>
+    <p>Confira nossa lista de produtos capilares de alta performance:</p>
+    
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h4>Lista de produtos cadastrados</h4>
+      <a href="/produtos/cadastro" class="btn btn-primary">Cadastrar produto</a>
+    </div>
+
+    <% const produtosExemplo = [
+      { nome: "Invigo Nutri-Enrich", linha: "Nutrição", indicacao: "Cabelos Secos", descricao: "Hidratação profunda com brilho e maciez instantâneos.", preco: 145.90, imagem: "/imgs/invigo.webp", icone: "bi-droplet-half" },
+      { nome: "Fusion", linha: "Reparação", indicacao: "Cabelos Danificados", descricao: "Restabelece a fibra capilar para reduzir quebra e frizz.", preco: 160.00, imagem: "/imgs/fusion.jpg", icone: "bi-bandage" },
+      { nome: "Oil Reflections", linha: "Brilho", indicacao: "Todos os tipos", descricao: "Acabamento sedoso com luminosidade intensa e proteção térmica.", preco: 185.00, imagem: "/imgs/oil.webp", icone: "bi-droplet-fill" },
+      { nome: "Color Brilliance", linha: "Proteção da Cor", indicacao: "Cabelos Coloridos", descricao: "Preserva a cor e mantém o acabamento vibrante por mais tempo.", preco: 139.00, imagem: "/imgs/color.webp", icone: "bi-palette-fill" },
+      { nome: "Elements", linha: "Renovação", indicacao: "Sem Sulfato/Parabenos", descricao: "Fórmula suave que renova os fios com ação antioxidante.", preco: 125.00, imagem: "/imgs/elements.webp", icone: "bi-leaf-fill" }
+    ]; %>
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+      <% produtosExemplo.forEach(p => { %>
+        <div class="col">
+          <div class="card h-100 shadow-sm">
+            <img src="<%= p.imagem %>" class="card-img-top" alt="<%= p.nome %>" />
+            <div class="card-body">
+              <div class="d-flex align-items-center mb-2">
+                <i class="bi <%= p.icone %> product-icon text-danger me-2"></i>
+                <h5 class="card-title text-danger mb-0"><%= p.nome %></h5>
+              </div>
+              <p class="card-text mb-1"><strong>Linha:</strong> <%= p.linha %></p>
+              <p class="card-text mb-1"><strong>Indicação:</strong> <%= p.indicacao %></p>
+              <p class="card-text mb-2"><strong>Descrição:</strong> <%= p.descricao %></p>
+              <p class="card-text"><strong>Preço:</strong> R$ <%= p.preco.toFixed(2) %></p>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+
+    <% if (produtos.length > 0) { %>
+      <div class="mt-5">
+        <h4>Produtos cadastrados</h4>
+      </div>
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <% produtos.forEach(p => { %>
+          <div class="col">
+            <div class="card h-100 shadow-sm">
+              <img src="<%= p.imagem || 'https://via.placeholder.com/400x250?text=Produto' %>" class="card-img-top" alt="<%= p.nome %>" />
+              <div class="card-body">
+                <div class="d-flex align-items-center mb-2">
+                  <% if (p.icone) { %>
+                    <i class="bi <%= p.icone %> product-icon text-danger me-2"></i>
+                  <% } %>
+                  <h5 class="card-title text-danger mb-0"><%= p.nome %></h5>
+                </div>
+                <% if (p.linha) { %>
+                  <p class="card-text mb-1"><strong>Linha:</strong> <%= p.linha %></p>
+                <% } %>
+                <% if (p.indicacao) { %>
+                  <p class="card-text mb-1"><strong>Indicação:</strong> <%= p.indicacao %></p>
+                <% } %>
+                <% if (p.descricao) { %>
+                  <p class="card-text mb-2"><strong>Descrição:</strong> <%= p.descricao %></p>
+                <% } %>
+                <p class="card-text"><strong>Preço:</strong> R$ <%= p.preco.toFixed(2) %></p>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    <% } %>
+
+    <div class="d-flex justify-content-between align-items-center mt-4">
+      <a href="/produtos/cadastro" class="btn btn-primary">Cadastrar produto</a>
+      <a href="/" class="btn btn-secondary">Voltar</a>
+    </div>
+</div>
+
+<%- include('partials/footer') %>

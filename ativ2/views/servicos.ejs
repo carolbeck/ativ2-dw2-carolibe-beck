@@ -1,0 +1,31 @@
+c<%- include('partials/header') %>
+<%- include('partials/navbar') %>
+
+<div class="container mt-5">
+    <h2>Catálogo Wella Professionals</h2>
+    <p>Confira nossa lista de produtos capilares de alta performance:</p>
+    
+    <table class="table table-hover table-striped shadow-sm">
+        <thead class="table-dark">
+            <tr>
+                <th>Produto</th>
+                <th>Linha</th>
+                <th>Indicação</th>
+                <th>Preço</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% produtos.forEach(p => { %>
+                <tr>
+                    <td class="fw-bold text-danger"><%= p.nome %></td>
+                    <td><%= p.linha %></td>
+                    <td><span class="badge bg-info text-dark"><%= p.indicacao %></span></td>
+                    <td>R$ <%= p.preco.toFixed(2) %></td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+    <a href="/" class="btn btn-secondary">Voltar</a>
+</div>
+
+<%- include('partials/footer') %>

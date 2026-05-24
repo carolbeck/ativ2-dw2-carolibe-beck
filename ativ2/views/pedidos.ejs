@@ -1,0 +1,51 @@
+<%- include('partials/header') %>
+<%- include('partials/navbar') %>
+
+<section class="py-5 bg-white">
+  <div class="container">
+    <div class="text-center mb-5">
+      <span class="eyebrow">Pedidos</span>
+      <h1 class="display-6 fw-bold">Acompanhe os pedidos do salão</h1>
+      <p class="text-muted mx-auto mb-0" style="max-width: 680px;">Veja o andamento das entregas, o cliente responsável e os produtos escolhidos em um layout moderno e inspirado em gestão de salão.</p>
+    </div>
+
+    <div class="row g-4">
+      <% pedidos.forEach((pedido) => { %>
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card order-card h-100 shadow-sm">
+            <div class="card-body">
+              <div class="d-flex align-items-start justify-content-between mb-3">
+                <div>
+                  <h5 class="card-title mb-1">Pedido #<%= pedido.id %></h5>
+                  <p class="mb-0 text-muted">Cliente: <strong><%= pedido.cliente %></strong></p>
+                </div>
+                <span class="badge <%= pedido.status === 'Entregue' ? 'bg-success' : pedido.status === 'Enviado' ? 'bg-primary' : pedido.status === 'Processando' ? 'bg-warning text-dark' : 'bg-danger' %>"><%= pedido.status %></span>
+              </div>
+
+              <div class="order-icon mb-3 text-danger">
+                <i class="bi <%= pedido.status === 'Entregue' ? 'bi-check-circle-fill' : pedido.status === 'Enviado' ? 'bi-truck' : pedido.status === 'Processando' ? 'bi-arrow-repeat' : 'bi-x-circle-fill' %> fs-1"></i>
+              </div>
+
+              <p class="card-text mb-3"><strong>Produto:</strong> <%= pedido.item %></p>
+              <div class="order-meta list-group list-group-flush">
+                <div class="list-group-item px-0 py-2 d-flex justify-content-between align-items-center">
+                  <span class="text-muted">Status</span>
+                  <span class="fw-semibold"><%= pedido.status %></span>
+                </div>
+                <div class="list-group-item px-0 py-2 d-flex justify-content-between align-items-center">
+                  <span class="text-muted">ID do pedido</span>
+                  <span class="fw-semibold">#<%= pedido.id %></span>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer bg-transparent border-0 pt-0">
+              <a href="/" class="text-decoration-none text-danger fw-semibold">Voltar para o painel</a>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>
