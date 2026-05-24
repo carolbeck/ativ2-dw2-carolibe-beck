@@ -6,6 +6,9 @@ import ProdutoController from "./controllers/ProdutoController.js";
 import PedidoController from "./controllers/PedidoController.js";
 import UsuarioController from "./controllers/UsuarioController.js";
 import Cliente from "./models/Cliente.js";
+import Pedido from "./models/Pedido.js";
+import Produto from "./models/Produto.js";
+import makeAssociations from "./config/associations.js";
 import session from "express-session";
 
 const app = express();
@@ -24,6 +27,9 @@ app.use(
   })
 );
 
+// Fazer associações antes de usar as rotas
+makeAssociations();
+
 app.use("/", ClienteController);
 app.use("/", ProdutoController);
 app.use("/", PedidoController);
@@ -31,19 +37,6 @@ app.use("/", UsuarioController);
 
 app.get("/", function (req, res) {
   res.render("index");
-});
-
-app.get("/pedidos", (req, res) => {
-  const listaPedidos = [
-    { id: 101, cliente: "Ana Silva", item: "Kit Fusion Grande", status: "Enviado" },
-    { id: 102, cliente: "Beatriz Souza", item: "Óleo Reflections 100ml", status: "Processando" },
-    { id: 103, cliente: "Carla Pires", item: "Máscara Nutri-Enrich", status: "Entregue" },
-    { id: 104, cliente: "Débora Lima", item: "Shampoo Color Brilliance", status: "Cancelado" },
-    { id: 105, cliente: "Erica Matos", item: "Condicionador Elements", status: "Entregue" }
-  ];
-  res.render("pedidos", { 
-    pedidos: listaPedidos 
-  });
 });
 
 app.get("/perfil", function (req, res) {

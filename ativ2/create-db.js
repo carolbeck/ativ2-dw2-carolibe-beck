@@ -3,7 +3,7 @@ import mysql from "mysql2/promise";
 const host = "localhost";
 const user = "root";
 const password = ""; 
-const database = "ATV02_CRUD_NODEJS"; 
+const database = "atv02_crud_nodejs"; 
 
 async function createDatabase() {
   try {

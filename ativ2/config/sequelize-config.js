@@ -6,7 +6,7 @@ const connection = new Sequelize({
 	username: "root",
 	password: "",
 	timezone: "-03:00",
-	database: "ATV02_CRUD_NODEJS",
+	database: "atv02_crud_nodejs",
 });
 
 export default connection;

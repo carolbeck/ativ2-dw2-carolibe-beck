@@ -1,0 +1,79 @@
+<%- include('partials/header') %>
+<%- include('partials/navbar') %>
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h2>Cadastrar Novo Pedido</h2>
+      <form action="/pedidos/cadastrar" method="POST" id="formPedido">
+        
+        <div class="mb-3">
+          <label for="clienteId" class="form-label">Cliente</label>
+          <select class="form-select" id="clienteId" name="clienteId" required>
+            <option value="">-- Selecione um cliente --</option>
+            <% clientes.forEach((cliente) => { %>
+              <option value="<%= cliente.id %>"><%= cliente.nome %></option>
+            <% }) %>
+          </select>
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label">Produtos</label>
+          <div class="row g-3">
+            <% produtos.forEach((produto) => { %>
+              <div class="col-12 col-md-6">
+                <div class="card h-100">
+                  <div class="card-body">
+                    <div class="form-check">
+                      <input class="form-check-input produto-checkbox" type="checkbox" name="produtosIds" value="<%= produto.id %>" id="produto<%= produto.id %>" data-preco="<%= produto.preco %>">
+                      <label class="form-check-label" for="produto<%= produto.id %>">
+                        <strong><%= produto.nome %></strong><br>
+                        <small class="text-muted">R$ <%= produto.preco.toFixed(2) %></small>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% }) %>
+          </div>
+        </div>
+
+        <div class="alert alert-info">
+          <strong>Total do Pedido:</strong> R$ <span id="totalPedido">0.00</span>
+        </div>
+
+        <div class="mb-3">
+          <input type="hidden" name="total" id="total" value="0">
+        </div>
+
+        <div class="d-flex gap-2">
+          <button type="submit" class="btn btn-danger">Cadastrar Pedido</button>
+          <a href="/pedidos" class="btn btn-secondary">Voltar</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  const checkboxes = document.querySelectorAll('.produto-checkbox');
+  const totalInput = document.getElementById('total');
+  const totalDisplay = document.getElementById('totalPedido');
+
+  function atualizarTotal() {
+    let total = 0;
+    checkboxes.forEach(checkbox => {
+      if (checkbox.checked) {
+        total += parseFloat(checkbox.dataset.preco);
+      }
+    });
+    totalInput.value = total.toFixed(2);
+    totalDisplay.textContent = total.toFixed(2);
+  }
+
+  checkboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', atualizarTotal);
+  });
+</script>
+
+<%- include('partials/footer') %>

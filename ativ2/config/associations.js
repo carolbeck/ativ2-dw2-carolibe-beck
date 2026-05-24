@@ -9,6 +9,9 @@ export default function makeAssociations() {
 
 	Pedido.belongsToMany(Produto, { through: "PedidoProduto", foreignKey: "pedidoId", otherKey: "produtoId" });
 	Produto.belongsToMany(Pedido, { through: "PedidoProduto", foreignKey: "produtoId", otherKey: "pedidoId" });
+
+	Cliente.belongsToMany(Produto, { through: "ClienteProduto", foreignKey: "clienteId", otherKey: "produtoId" });
+	Produto.belongsToMany(Cliente, { through: "ClienteProduto", foreignKey: "produtoId", otherKey: "clienteId" });
 }
 
 
